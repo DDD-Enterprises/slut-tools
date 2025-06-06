@@ -1,67 +1,57 @@
 .TH GANGBANG 1 "June 2025" "slut-tools 1.0" "User Commands"
 .SH NAME
-gangbang - Merge your entire directory into a single sticky mess.
+gangbang \- Merge your entire directory into a single sticky mess.
 .SH SYNOPSIS
 .B gb
-[\fIdocs|all|gangbang|slutify|pileup|fml <pattern>\fR] [flags]
+[docs|all|gangbang|slutify|pileup|fml <pattern>] [flags]
 .SH DESCRIPTION
 gangbang takes every file you can handle and stuffs them, code-fenced and filthy, into one dripping output. Deep Mode is on by default—subfolders get an invite. Choose your filth mode, match wildcards, merge all docs, and laugh your ass off at the output.
+
 .SH OPTIONS
-.TP
-\fBdocs\fR
-Merge all markdown, text, and doc files.
-.TP
-\fBall, gangbang, slutify, pileup\fR
-Merge everything—no limits.
-.TP
-\fBfml <pattern>\fR
-Merge all files matching wildcard or fuzzy pattern.
-.TP
-\fB-o, --output <file>\fR
-Where all those loads end up. (default: cumdump.md)
-.TP
-\fB-d, --dir <dir>\fR
-Location of the gangbang (default: current dir)
-.TP
-\fB-f, --filter <prefix>\fR
-Only bang files starting with this prefix.
-.TP
-\fB-t, --type <ext>\fR
-What kind of content are you stuffing? (default: md)
-.TP
-\fB-n, --name\fR
-Announce every new entry—consent is hot.
-.TP
-\fB-r, --readme\fR
-Let README watch (include README files).
-.TP
-\fB-l, --log <file>\fR
-Record every position (log file).
-.TP
-\fB-D, --deep\fR
-Go balls deep (recursive, default).
-.TP
-\fB--no-deep\fR
-Keep it shallow (top only).
-.TP
-\fB-m, --mode <mode>\fR
-Set filthiness level: tease, slut, freak.
-.TP
-\fBmode\fR
-Interactive: select and save your filth mode forever.
-.TP
-\fB-h, --help\fR
-Spank this help menu and beg for more.
+docs
+  Merge all markdown, text, and doc files.
+all, gangbang, slutify, pileup
+  Merge everything—no limits.
+fml <pattern>
+  Merge all files matching wildcard or fuzzy pattern.
+-o, --output <file>
+  Where all those loads end up. (default: cumdump.md)
+-d, --dir <dir>
+  Location of the gangbang (default: current dir)
+-f, --filter <prefix>
+  Only bang files starting with this prefix.
+-t, --type <ext>
+  What kind of content are you stuffing? (default: md)
+-n, --name
+  Announce every new entry—consent is hot.
+-r, --readme
+  Let README watch (include README files).
+-l, --log <file>
+  Record every position (log file).
+-D, --deep
+  Go balls deep (recursive, default).
+--no-deep
+  Keep it shallow (top only).
+-m, --mode <mode>
+  Set filthiness level: tease, slut, freak.
+mode
+  Interactive: select and save your filth mode forever.
+-h, --help
+  Spank this help menu and beg for more.
+
 .SH EXAMPLES
 gb docs -n -o cumdump.md
-gb fml "202" --name --output "calendar_bukkake.md"
+gb fml "*202*" --name --output "calendar_bukkake.md"
 gb all --no-deep
 gb mode
+
 .SH FILTHINESS MODES
-tease - Cheeky, office-safe, just a tip.
-slut - (default) Filthy, clever, and brutally honest.
-freak - Absolutely explicit. Not for your mom.
+tease   - Cheeky, office-safe, just a tip.
+slut    - (default) Filthy, clever, and brutally honest.
+freak   - Absolutely explicit. Not for your mom.
+
 .SH AUTHOR
 Stuffed by filthy devs for filthy users.
+
 .SH LICENSE
 MIT License. Do whatever gets you off.
