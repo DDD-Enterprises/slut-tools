@@ -1,0 +1,98 @@
+#!/bin/bash
+
+# 💋 slutgasm — Merge That Moans™
+# Fuses markdowns and more like a back-alley poet with no gag reflex.
+
+OUTPUT_FILE="slutgasm_output.md"
+INCLUDE_README=false
+SHOW_FILENAMES=false
+FILENAME_FILTER=""
+EXT_FILTER="md"
+TARGET_DIR="."
+TOTAL_SIZE=0
+
+# 💄 Dark-Terminal Optimized Colors
+PINK="\033[95m"
+PURPLE="\033[35m"
+RED="\033[91m"
+GREEN="\033[92m"
+YELLOW="\033[93m"
+BLUE="\033[94m"
+WHITE="\033[97m"
+NC="\033[0m"
+
+# 🍑 Help Menu
+usage() {
+    echo -e "${PURPLE}💋 SLUTGASM${NC} — ${PINK}File Merge That Moans™${NC}\n"
+
+    echo -e "${WHITE}💦 Licks every .md (or .txt) in sight,"
+    echo -e "    slaps 'em together, and leaves you dripping with output."
+    echo -e "    It’s not just merge—it’s markdown aftercare.${NC}\n"
+
+    echo -e "${YELLOW}USAGE:${NC}"
+    echo -e "  slutgasm [options]\n"
+
+    echo -e "${YELLOW}OPTIONS:${NC}"
+    echo -e "  -o <file>    Cream target (default: slutgasm_output.md)"
+    echo -e "  -d <dir>     The dirty directory (default: .)"
+    echo -e "  -f <filter>  Prefix filter (e.g., 'brat_', 'whore_')"
+    echo -e "  -t <ext>     Extension to devour (default: md)"
+    echo -e "  -n           Moan the name before each block"
+    echo -e "  -r           Let README come too"
+    echo -e "  -h           Spanks this help menu\n"
+
+    echo -e "${BLUE}EXAMPLES:${NC}"
+    echo -e "  slutgasm -f slut_ -n -o full_load.md"
+    echo -e "  slutgasm -t txt -r > wet_transcript.txt"
+    echo -e "  cg -d smut/ -f dom_ -n\n"
+
+    echo -e "${RED}RULES:${NC}"
+    echo -e "  - Don’t guess the vibe—ask."
+    echo -e "  - README only joins on command."
+    echo -e "  - Failures get punished.\n"
+
+    exit 0
+}
+
+# 🎛 Argument Handling
+while getopts "o:rnf:t:d:h" opt; do
+    case ${opt} in
+        o ) OUTPUT_FILE="$OPTARG" ;;
+        r ) INCLUDE_README=true ;;
+        n ) SHOW_FILENAMES=true ;;
+        f ) FILENAME_FILTER="$OPTARG" ;;
+        t ) EXT_FILTER="$OPTARG" ;;
+        d ) TARGET_DIR="$OPTARG" ;;
+        h ) usage ;;
+        * ) usage ;;
+    esac
+done
+
+[[ -t 1 ]] && echo -e "${PINK}🔍 Kink-checking: '${TARGET_DIR}' — show me what you got...${NC}"
+> "$OUTPUT_FILE"
+
+# 🖤 Main File Merge Logic
+shopt -s nullglob
+for file in "$TARGET_DIR"/*."$EXT_FILTER"; do
+    base=$(basename "$file")
+
+    [[ "$base" == .* || "$base" == "$OUTPUT_FILE" ]] && continue
+    if [[ $INCLUDE_README == false && "$base" == README* ]]; then continue; fi
+    if [[ -n "$FILENAME_FILTER" && "$base" != "$FILENAME_FILTER"* ]]; then continue; fi
+
+    FILE_SIZE=$(stat -c%s "$file" 2>/dev/null || wc -c < "$file")
+    TOTAL_SIZE=$((TOTAL_SIZE + FILE_SIZE))
+
+    echo -e "${YELLOW}👅 Licking: ${WHITE}$base${NC} ${YELLOW}[${FILE_SIZE} bytes]${NC}" >&2
+    echo -e "${BLUE}🍆 Stuffing it deep into ${OUTPUT_FILE}...${NC}" >&2
+
+    [[ $SHOW_FILENAMES == true ]] && echo "**$base**" >> "$OUTPUT_FILE"
+
+    echo "\`\`\`" >> "$OUTPUT_FILE"
+    cat "$file" >> "$OUTPUT_FILE"
+    echo -e "\n\`\`\`\n" >> "$OUTPUT_FILE"
+done
+
+# 💦 Final Climax
+FINAL_SIZE=$(stat -c%s "$OUTPUT_FILE" 2>/dev/null || wc -c < "$OUTPUT_FILE")
+echo -e "${GREEN}💦 Finished. Your output is soaked: ${WHITE}${OUTPUT_FILE}${NC} ${GREEN}[${FINAL_SIZE} bytes of raw markdown kink]${NC}" >&2
