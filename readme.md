@@ -1,100 +1,86 @@
-# 💦 `slut-tools` — Command Line Kinkware
+# 💦 slut-tools — Command Line Kinkware
 
-_Merge it. Lick it. Pipe it raw._
+Merge it. Lick it. Pipe it raw. (Now with Deep Mode.)
 
-**`slut-tools`** is a dark-mode-optimized, kink-positive CLI suite designed to fuse, filter, and fuck with your markdown and plaintext files—ethically, consensually, and with style.
-
-From `slutgasm` to future utilities like `filthlint`, `teasepipe`, and `domdiff`, this is your terminal's after-hours companion. Clean UX. Dirty intent.
+slut-tools is a filthy, neon-bright CLI suite for merging, licking, and stuffing your markdown/text files with max penetration and zero shame.
+From `slutgasm` to up-and-coming deviants, it’s the kinky Swiss Army knife your terminal's been begging for.
 
 ---
 
-## 🧰 Included Commands
+## 🚀 Featured Command
 
-### 🔥 `slutgasm`
+### `slutgasm`
 
-The core command. Merges markdown or plaintext files into one slutty output, with optional file headers and filter logic.
+Merge markdown or plaintext files into a single, obedient output—code fenced, dripping, and now with Deep Mode (recursive merge).
 
-#### 💋 Usage
 ```
-slutgasm [options]
-```
-
-#### 🍑 Options
-
-| Flag        | Purpose                                               |
-|-------------|-------------------------------------------------------|
-| `-o <file>` | Output file name (default: `slutgasm_output.md`)     |
-| `-d <dir>`  | Target directory (default: current)                  |
-| `-f <filter>` | Filename prefix filter (e.g., `brat_`, `slut_`)    |
-| `-t <ext>`  | File extension to include (default: `md`)            |
-| `-n`        | Print filename before each block (as markdown header)|
-| `-r`        | Include README files in the merge                    |
-| `-h`        | Show help menu                                       |
-
-#### 💦 Example Commands
-```
-# Merge all slut_*.md files, naming each block
-slutgasm -f slut_ -n -o full_load.md
-
-# Merge all .txt files, including README
-slutgasm -t txt -r -o dirty_transcript.txt
-
-# Just do it live
-cg -d smut/ -f dom_ -n
+slutgasm -f slut_ -n -o cumdump.md
+cg --dir=smut/ --type=txt --deep
 ```
 
 ---
 
-## 📦 Installation
+## 🧰 Installation
 
-Just drop the script in your path:
+Manual:
 
 ```
+git clone https://github.com/YOUR-USER/slut-tools.git
+cd slut-tools
 chmod +x slutgasm
-mv slutgasm /usr/local/bin/
+sudo mv slutgasm /usr/local/bin/slutgasm
+sudo ln -s /usr/local/bin/slutgasm /usr/local/bin/cg
 ```
 
-Or source it into your terminal profile for quick-and-dirty access.
+Homebrew:
+
+Use the provided `Formula/slutgasm.rb` to tap and install.
 
 ---
 
-## 📐 Styling & Design
+## 💻 Usage
 
-- **Dark-mode optimized:** ANSI colors pulled from sexy Starship themes.
-- **Consensual defaults:** No README unless explicitly asked.
-- **No sloppy guessing:** You must specify what to devour.
+```
+slutgasm [flags]
+```
 
----
-
-## 🔮 Upcoming Tools
-
-| Tool        | Function                                                   |
-|-------------|------------------------------------------------------------|
-| `filthlint` | Markdown linter with sass, shame, and sensual feedback     |
-| `teasepipe` | Pipe handler that delays, moans, or filters CLI output     |
-| `domdiff`   | File comparator that punishes bloat and rewards efficiency |
-| `whoremap`  | Directory visualizer with heatmaps and dominance metrics   |
-
----
-
-## 🧠 Philosophy
-
-We believe CLIs should be:
-
-- Fun, flirty, and fully featured.
-- Fast and filthy, without the guilt.
-- Sassy, scriptable, and scandalously useful.
+| Flag                   | Description                                |
+| ---------------------- | ------------------------------------------ |
+| -o, --output <file>    | Output file (default: slutgasm\_output.md) |
+| -d, --dir <dir>        | Directory (recursive by default)           |
+| -f, --filter <prefix>  | Only include files starting with prefix    |
+| -t, --type <ext>       | File extension (default: md)               |
+| -n, --name             | Display filename before each code block    |
+| -r, --readme           | Let README come too                        |
+| -l, --log <file>       | Log output                                 |
+| -T, --theme <t>        | Theme: neon, light, none                   |
+| -D, --deep / --no-deep | Recursive merge ON/OFF (default: ON)       |
+| -h, --help             | Spank this help menu                       |
 
 ---
 
-## ⚠️ Warnings
+## 🖤 Examples
 
-- No kink without clarity: use `-h` if you’re confused.
-- Don’t run `slutgasm` in your system root unless you’re *really* ready.
-- Filth is context-aware. Don’t assume. Ask.
+```
+slutgasm -f slut_ -n -o full_load.md
+slutgasm --type=txt -r > wet_transcript.txt
+SLUT_THEME=neon slutgasm --dir=posts/ --filter=dom_ -n
+slutgasm --no-deep
+```
 
 ---
 
-## ❤️ Contribute
+## 📦 What's Inside
 
-Ideas, pull requests, kinks, or color palettes welcome.
+| Tool     | Description                   |
+| -------- | ----------------------------- |
+| slutgasm | Main tool for merging content |
+| cg       | 2-letter alias for slutgasm   |
+
+---
+
+## 📓 License
+
+MIT License. Dirty code, clean conscience.
+
+
