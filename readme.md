@@ -1,86 +1,91 @@
-# 💦 slut-tools — Command Line Kinkware
-
-Merge it. Lick it. Pipe it raw. (Now with Deep Mode.)
-
-slut-tools is a filthy, neon-bright CLI suite for merging, licking, and stuffing your markdown/text files with max penetration and zero shame.
-From `slutgasm` to up-and-coming deviants, it’s the kinky Swiss Army knife your terminal's been begging for.
+Absolutely! Here’s your **full documentation suite**—one file at a time, plain text, no code blocks.
+Each file is carefully crafted to match the filthy, hilarious, clever tone of your gangbang CLI.
+Just tell me “next” to get each one!
 
 ---
 
-## 🚀 Featured Command
+### **1. README.md**
 
-### `slutgasm`
+# 🍆 gangbang — Merge That Leaves You Wrecked™
 
-Merge markdown or plaintext files into a single, obedient output—code fenced, dripping, and now with Deep Mode (recursive merge).
+*It’s not a merge. It’s a fucking gangbang. Your directory’s about to take more files than OnlyFans on payday.*
 
-```
-slutgasm -f slut_ -n -o cumdump.md
-cg --dir=smut/ --type=txt --deep
-```
+**gangbang** (part of slut-tools) lets you stuff every file you can find into one sticky, code-fenced mess.
+With Deep Mode, wildcard pattern matching, filthiness modes, and enough sex jokes to make your sysadmin blush.
+
+---
+
+## 🚀 Featured Use Cases
+
+* **`gb docs`**
+  Merge all markdown, text, and doc files into a single cumdump.
+* **`gb fml <pattern>`**
+  Fuzzy/wildcard matching: get every file that *almost* fits.
+* **`gb all`**, **`gb gangbang`**, **`gb slutify`**, **`gb pileup`**
+  Merge everything—no limits, no shame.
+* **Filthiness Modes:**
+  `tease` (PG, innuendo, vanilla), `slut` (default, filthy AF), `freak` (NSFW, X-rated, only for the truly depraved).
 
 ---
 
 ## 🧰 Installation
 
-Manual:
+Clone, chmod, and let the gangbang begin:
 
 ```
 git clone https://github.com/YOUR-USER/slut-tools.git
 cd slut-tools
-chmod +x slutgasm
-sudo mv slutgasm /usr/local/bin/slutgasm
-sudo ln -s /usr/local/bin/slutgasm /usr/local/bin/cg
+chmod +x gangbang
+sudo mv gangbang /usr/local/bin/gb
 ```
-
-Homebrew:
-
-Use the provided `Formula/slutgasm.rb` to tap and install.
 
 ---
 
 ## 💻 Usage
 
 ```
-slutgasm [flags]
+gb [docs|all|gangbang|slutify|pileup|fml <pattern>] [flags]
+gb mode       # interactively pick and save your filth level
 ```
 
-| Flag                   | Description                                |
-| ---------------------- | ------------------------------------------ |
-| -o, --output <file>    | Output file (default: slutgasm\_output.md) |
-| -d, --dir <dir>        | Directory (recursive by default)           |
-| -f, --filter <prefix>  | Only include files starting with prefix    |
-| -t, --type <ext>       | File extension (default: md)               |
-| -n, --name             | Display filename before each code block    |
-| -r, --readme           | Let README come too                        |
-| -l, --log <file>       | Log output                                 |
-| -T, --theme <t>        | Theme: neon, light, none                   |
-| -D, --deep / --no-deep | Recursive merge ON/OFF (default: ON)       |
-| -h, --help             | Spank this help menu                       |
+| Flag                  | Description                                           |
+| --------------------- | ----------------------------------------------------- |
+| -o, --output <file>   | Where all those loads end up (default: cumdump.md)    |
+| -d, --dir <dir>       | Location of the gangbang (default: right here, slut)  |
+| -f, --filter <prefix> | Only let the right kinksters in (prefix filter)       |
+| -t, --type <ext>      | What kind of content are you fucking? (default: md)   |
+| -n, --name            | Announce every new entry (consent is hot)             |
+| -r, --readme          | Let the voyeur watch (include README)                 |
+| -l, --log <file>      | Record every position (log file, dirty exhibitionist) |
+| -D, --deep/--no-deep  | Go balls deep (recursive), or keep it shallow         |
+| -m, --mode <mode>     | Set filthiness (tease, slut, freak) for this run      |
+| -h, --help            | Spank this help menu and beg for more                 |
 
 ---
 
 ## 🖤 Examples
 
 ```
-slutgasm -f slut_ -n -o full_load.md
-slutgasm --type=txt -r > wet_transcript.txt
-SLUT_THEME=neon slutgasm --dir=posts/ --filter=dom_ -n
-slutgasm --no-deep
+gb docs -n -o cumdump.md
+gb fml "*202*" --name --output "calendar_bukkake.md"
+gb all --no-deep
+gb mode          # Select filth level for all future sessions
 ```
 
 ---
 
-## 📦 What's Inside
+## 💅 Filthiness Modes
 
-| Tool     | Description                   |
-| -------- | ----------------------------- |
-| slutgasm | Main tool for merging content |
-| cg       | 2-letter alias for slutgasm   |
+* **tease:** Cheeky, office-safe, all innuendo.
+* **slut:** (Default) Filthy, clever, brutally honest.
+* **freak:** X-rated, truly offensive, not for church folks.
 
 ---
 
 ## 📓 License
 
-MIT License. Dirty code, clean conscience.
+MIT License. Free to fuck with.
 
+---
 
+**Say “next” for the manpage!**
