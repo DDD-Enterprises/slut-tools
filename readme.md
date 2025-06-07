@@ -2,6 +2,7 @@
 
 It’s not a merge. It’s a fucking gangbang. Your directory’s about to take more files than OnlyFans on payday.
 
+For training wheels, run `gb_easy "merge all markdown"` for an English-friendly ride.
 gangbang (part of slut-tools) lets you stuff every file you can find into one sticky, code-fenced mess.
 With Deep Mode, wildcard pattern matching, filthiness modes, and enough sex jokes to make your sysadmin blush.
 
@@ -41,7 +42,11 @@ gb mode       # interactively pick and save your filth level
 | -l, --log <file>          | Record every position (log file, dirty exhibitionist)  |
 | -D, --deep/--no-deep      | Go balls deep (recursive), or keep it shallow          |
 | -m, --mode <mode>         | Set filthiness (tease, slut, freak) for this run       |
-| -h, --help                | Spank this help menu and beg for more                  |
+| --scope <flat|n1|recursive> | Depth of directory search |
+| --files "globs"           | Comma-separated globs to include |
+| --from-list <file>        | Read file paths from a list |
+| --out-mode <print|copy|write> | Output destination |
+| --repo-path <dir>         | Target dir when writing |
 
 ## 🖤 Examples
 
@@ -49,6 +54,7 @@ gb docs -n -o cumdump.md
 gb fml "*202*" --name --output "calendar_bukkake.md"
 gb all --no-deep
 gb mode          # Select filth level for all future sessions
+gb_easy "merge all markdown recursively and copy"
 
 ## 💅 Filthiness Modes
 
