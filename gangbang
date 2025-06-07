@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# 💋 gangbang -- Selective Multi-Source Merge
+# See readme.md for usage details.
+
+show_help() {
+  cat <<'USAGE'
+Usage: gangbang [--scope <flat|n1|recursive>] [--files "<glob1,glob2,...>"] \
+                [--from-list <file>] [--out-mode <print|copy|write>] \
+                [--repo-path <path>]
+
+Merges specified files into one markdown file. With --out-mode write, the
+output file is saved to --repo-path (default ./merge_output/).
+USAGE
+}
+
+SCOPE=""
+FILE_GLOBS=""
+LIST_FILE=""
+OUT_MODE="print"
+REPO_PATH="./merge_output"
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --scope)
+      SCOPE="$2"; shift 2;;
+    --files)
+      FILE_GLOBS="$2"; shift 2;;
+    --from-list)
+      LIST_FILE="$2"; shift 2;;
+    --out-mode)
+      OUT_MODE="$2"; shift 2;;
+    --repo-path)
+      REPO_PATH="$2"; shift 2;;
+    -h|--help)
+      show_help; exit 0;;
+    *)
+      echo "Unknown option: $1" >&2; show_help; exit 1;;
+  esac
+done
+
+files=()
+
+# Collect from --files
+if [[ -n "$FILE_GLOBS" ]]; then
+  IFS=',' read -r -a globs <<< "$FILE_GLOBS"
+  for g in "${globs[@]}"; do
+    for f in $g; do
+      [[ -f "$f" ]] && files+=("$f")
+    done
+  done
+fi
+
+# Collect from --from-list
+if [[ -n "$LIST_FILE" && -f "$LIST_FILE" ]]; then
+  while IFS= read -r f; do
+    [[ -f "$f" ]] && files+=("$f")
+  done < "$LIST_FILE"
+fi
+
+# Directory scanning via --scope (or default)
+if [[ -n "$SCOPE" || ${#files[@]} -eq 0 ]]; then
+  depth=""
+  case "${SCOPE:-flat}" in
+    flat) depth="-maxdepth 1";;
+    n1) depth="-maxdepth 2";;
+    recursive) depth="";;
+    *) echo "Invalid scope: $SCOPE" >&2; exit 1;;
+  esac
+  while IFS= read -r -d '' f; do
+    files+=("$f")
+  done < <(find . $depth -type f -print0)
+fi
+
+# De-duplicate and sort
+mapfile -t files < <(printf '%s\n' "${files[@]}" | sort -u)
+
+# ignore hidden files
+cleaned=()
+for f in "${files[@]}"; do
+  base=$(basename "$f")
+  [[ $base == .* ]] && continue
+  cleaned+=("$f")
+done
+files=("${cleaned[@]}")
+
+[[ ${#files[@]} -eq 0 ]] && { echo "No files found" >&2; exit 1; }
+
+output=""
+for f in "${files[@]}"; do
+  base=$(basename "$f")
+  ext=${f##*.}
+  content=$(cat "$f")
+  output+="**$base**\n\n\`\`\`$ext\n$content\n\`\`\`\n\n"
+  size=$(wc -c < "$f")
+  echo "[gangbang] included $f ($size bytes)" >> /tmp/gangbang.log
+done
+
+stamp=$(date +%Y%m%d_%H%M%S)
+outfile="gangbang_merge_${stamp}.md"
+
+case "$OUT_MODE" in
+  print)
+    printf '%s' "$output";;
+  copy)
+    if command -v pbcopy >/dev/null; then
+      printf '%s' "$output" | pbcopy
+    elif command -v xclip >/dev/null; then
+      printf '%s' "$output" | xclip -selection clipboard
+    elif command -v wl-copy >/dev/null; then
+      printf '%s' "$output" | wl-copy
+    else
+      printf '%s' "$output"
+    fi;;
+  write)
+    mkdir -p "$REPO_PATH"
+    printf '%s' "$output" > "$REPO_PATH/$outfile"
+    echo "Wrote $REPO_PATH/$outfile";;
+  *)
+    echo "Invalid out-mode: $OUT_MODE" >&2; exit 1;;
+esac
