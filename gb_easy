@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+import re
+import shlex
+import subprocess
+import sys
+
+HELP="""gb_easy - Natural language wrapper for gangbang
+
+Usage: gb_easy "<instruction>"
+Example: gb_easy "merge all markdown recursively and copy"
+"""
+
+def print_help():
+    print(HELP)
+
+def parse(text):
+    t = text.lower()
+    opts = {}
+    if re.search(r"recursive|all sub", t):
+        opts['scope'] = 'recursive'
+    elif re.search(r"one level|n1|subdir", t):
+        opts['scope'] = 'n1'
+    elif re.search(r"flat|top level", t):
+        opts['scope'] = 'flat'
+
+    globs = []
+    if re.search(r"markdown|\.md", t):
+        globs.append('*.md')
+    if re.search(r"text|\.txt", t):
+        globs.append('*.txt')
+    if re.search(r"python|\.py", t):
+        globs.append('*.py')
+    if 'readme' in t:
+        globs.append('README*')
+    if 'license' in t:
+        globs.append('LICENSE*')
+    if globs:
+        opts['files'] = ','.join(globs)
+
+    m = re.search(r'from list (\S+)', t)
+    if m:
+        opts['from_list'] = m.group(1)
+
+    if 'clipboard' in t or 'copy' in t:
+        opts['out_mode'] = 'copy'
+    elif 'write' in t or 'save' in t:
+        opts['out_mode'] = 'write'
+    else:
+        opts['out_mode'] = 'print'
+
+    m = re.search(r'(?:write|save) to (\S+)', t)
+    if m:
+        opts['repo_path'] = m.group(1)
+
+    return opts
+
+def build_cmd(opts):
+    cmd = ['gangbang']
+    for key, flag in (
+        ('scope', '--scope'),
+        ('files', '--files'),
+        ('from_list', '--from-list'),
+        ('out_mode', '--out-mode'),
+        ('repo_path', '--repo-path'),
+    ):
+        if key in opts:
+            cmd += [flag, opts[key]]
+    return cmd
+
+def main():
+    if len(sys.argv) < 2 or sys.argv[1] in ('-h','--help'):
+        print_help()
+        return
+    text = ' '.join(sys.argv[1:])
+    opts = parse(text)
+    cmd = build_cmd(opts)
+    subprocess.run(cmd)
+
+if __name__ == '__main__':
+    main()
