@@ -48,6 +48,10 @@ gb mode       # interactively pick and save your filth level
 | --out-mode <print|copy|write> | Output destination |
 | --repo-path <dir>         | Target dir when writing |
 
+Clipboard commands are detected automatically: `pbcopy` on macOS, `xclip` or
+`wl-copy` on Linux, and `clip.exe` when running under WSL. If none are found,
+the merged text is printed to stdout.
+
 ## 🖤 Examples
 
 gb docs -n -o cumdump.md
