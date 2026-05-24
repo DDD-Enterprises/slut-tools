@@ -21,6 +21,23 @@ LIST_FILE=""
 OUT_MODE="print"
 REPO_PATH="./merge_output"
 
+# choose clipboard command based on platform
+detect_clip_cmd() {
+  if command -v pbcopy >/dev/null; then
+    echo pbcopy
+  elif command -v xclip >/dev/null; then
+    echo "xclip -selection clipboard"
+  elif command -v wl-copy >/dev/null; then
+    echo wl-copy
+  elif command -v clip.exe >/dev/null; then
+    echo clip.exe
+  else
+    echo cat
+  fi
+}
+
+CLIP_CMD=$(detect_clip_cmd)
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --scope)
@@ -104,15 +121,7 @@ case "$OUT_MODE" in
   print)
     printf '%s' "$output";;
   copy)
-    if command -v pbcopy >/dev/null; then
-      printf '%s' "$output" | pbcopy
-    elif command -v xclip >/dev/null; then
-      printf '%s' "$output" | xclip -selection clipboard
-    elif command -v wl-copy >/dev/null; then
-      printf '%s' "$output" | wl-copy
-    else
-      printf '%s' "$output"
-    fi;;
+    printf '%s' "$output" | eval "$CLIP_CMD";;
   write)
     mkdir -p "$REPO_PATH"
     printf '%s' "$output" > "$REPO_PATH/$outfile"
